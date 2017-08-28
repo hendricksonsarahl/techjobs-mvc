@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by LaunchCode
+ * Created by LaunchCode and Sarah Hendrickson
  */
 @Controller
 @RequestMapping(value = "list")
