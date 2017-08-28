@@ -15,6 +15,10 @@
 
         <p>
             <span th:each="column : ${columns}">
+
+            <!-- Bonus mission complete: Modify the view template to keep the previous search field selected
+            when displaying results -->
+                
                 <input
                         type="radio"
                         name="searchType"
@@ -43,8 +47,19 @@
         <div th:each="job : ${jobs}">
             <table class="job-listing">
                 <tr th:each="item : ${job.entrySet()}">
-                    <td th:text="${item.getKey()}"></td>
-                    <td th:text="${item.getValue()}"></td>
+
+                    <!-- Bonus mission complete: Capitalize field names -->
+
+                    <td th:text="${#strings.capitalizeWords(item.getKey())}"></td>
+
+                    <!-- Bonus mission complete: Make each value (except name) hyperlinked to the listing of all jobs with that value -->
+
+                    <td th:unless="${item.key.equals('name')}">
+                        <a  th:href="@{/list/jobs(column=${item.key},value=${item.value})}"
+                            th:text="${item.value}">
+                        </a>
+                    </td>
+                    <td th:if="${item.key.equals('name')}" th:text="${item.value}"></td>
                 </tr>
             </table>
 
